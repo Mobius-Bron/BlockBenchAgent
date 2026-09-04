@@ -1,0 +1,6 @@
+[submodule "blockbench"]
+	path = blockbench
+	url = https://github.com/JannisX11/blockbench.git
+[submodule "blockbench-mcp-plugin"]
+	path = blockbench-mcp-plugin
+	url = https://github.com/jasonjgardner/blockbench-mcp-plugin.git
