@@ -1,0 +1,26 @@
+{
+  "name": "create_project",
+  "title": "Create Project",
+  "description": "Creates a new project with the given name and project type.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "format": {
+        "type": "string",
+        "default": "bedrock_block",
+        "description": "Project format ID from Blockbench's Formats registry."
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  "execution": {
+    "taskSupport": "forbidden"
+  }
+}

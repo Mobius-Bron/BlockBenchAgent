@@ -1,0 +1,96 @@
+create_animation — Creates a new animation with keyframes for bones.
+manage_keyframes — Creates, deletes, or edits keyframes in the animation timeline for specific bones and channels.
+animation_graph_editor — Controls animation curves in the graph editor for fine-tuning animations.
+bone_rigging — Creates and manipulates the bone structure (rig) of a model for animation.
+animation_timeline — Controls the animation timeline, including playback, time scrubbing, and timeline settings.
+batch_keyframe_operations — Performs batch operations on multiple keyframes at once.
+animation_copy_paste — Copies and pastes animation data between bones or animations.
+list_armatures — Lists all armatures in the current project with their basic info.
+get_armature — Gets detailed information about a specific armature including its bones.
+add_armature — Creates a new armature in the project. An armature is a skeletal rig used for mesh deformation.
+remove_armature — Removes an armature and all its bones from the project.
+update_armature — Updates properties of an existing armature.
+list_armature_bones — Lists all armature bones, optionally filtered by a specific armature.
+get_armature_bone — Gets detailed information about a specific armature bone.
+add_armature_bone — Creates a new bone and adds it to an armature or parent bone.
+remove_armature_bone — Removes an armature bone from the project.
+update_armature_bone — Updates properties of an existing armature bone.
+update_armature_bones_batch — Updates multiple armature bones at once with the same properties.
+select_armature_bones — Selects armature bones by ID. Can select single bone, multiple bones, or bone hierarchy.
+get_vertex_weights — Gets vertex weights for a mesh from all bones affecting it.
+set_vertex_weight — Sets the weight of a specific vertex on a bone.
+set_vertex_weights_batch — Sets multiple vertex weights at once on a bone.
+clear_vertex_weights — Clears all vertex weights from a bone for a specific mesh.
+capture_screenshot — Returns the image data of the current view.
+capture_app_screenshot — Returns the image data of the Blockbench app.
+set_camera_angle — Sets the camera angle to the specified value.
+place_cube — Places a cube of the given size at the specified position. Texture and group are optional.
+modify_cube — Modifies the cube with the given ID. Auto UV setting: saved as an integer, where 0 means disabled, 1 means enabled, and 2 means relative auto UV (cube position affects UV)
+remove_element — Removes the element with the given ID.
+add_group — Adds a new group with the given name and options.
+list_outline — Returns the project outline as a hierarchical tree. Each node reports { name, uuid, type (cube|mesh|group), children? }. Groups contain child cubes, meshes, and sub-groups. Use `include_cubes=false` to get a group-only skeleton when you just need structure, or `max_depth` to bound very deep trees.
+duplicate_element — Duplicates a cube, mesh or group by ID or name.  You may offset the duplicate or assign a new name.
+rename_element — Renames a cube, mesh or group by ID or name.
+find_elements_by_criteria — Searches the current project for elements matching the given criteria. Supports name pattern matching (regex or substring), type filtering, scoping to a parent group, cube size ranges, and selection scope. Returns element metadata, never modifies state.
+select_all_of_type — Selects all elements of the given type (cube, mesh, or group) in the current project. Optionally restrict to descendants of a parent group, or add to (rather than replace) the current selection.
+filter_by_material — Returns all elements that reference the given texture. For cubes, includes the list of face keys (e.g., 'north', 'up') that use the texture. For meshes, returns the mesh if any face uses the texture.
+get_selection — Returns the current selection state: selected cube/mesh/group UUIDs and names, plus the active texture. Use this to verify what `apply_texture` or a paint tool with `fill_mode="selected_elements"` will target.
+list_export_formats — Lists all registered export codecs with their id, display name, file extension, and whether they support compile/export. Use before `export_model` to pick a codec.
+export_model — Compiles the current project through the named codec and returns the result as text. Optionally writes the compiled content to a filesystem path (requires user permission in Blockbench v5.0+). Use `list_export_formats` first to discover codec IDs.
+undo — Undoes the most recent edit in the current project. Use `steps` to undo multiple edits in a single call. Returns the action(s) that were undone.
+redo — Redoes the most recently undone edit. Use `steps` to redo multiple edits in a single call. Returns the action(s) that were redone.
+get_undo_stack — Returns the current undo/redo history: the list of edit entries, the current index, and which entries are undone vs. applied. Use this to inspect available undo/redo operations and find named checkpoints.
+save_checkpoint — Inserts a named marker into the undo history. The marker can later be located with `get_undo_stack` so the agent knows how many times to call `undo` to return to this state. Does not modify the project.
+from_geo_json — Imports a model from a GeoJSON file.
+get_face_material_instances — Gets the material instance names for cube faces. Material instances are used in Bedrock Block format to map faces to materials defined in the minecraft:material_instances component.
+set_face_material_instance — Sets the material instance name for one or more cube faces. Material instances are strings that map to materials defined in the minecraft:material_instances component for Bedrock Block format.
+list_material_instances — Lists all unique material instance names used in the project. Returns the material instance names along with which cubes and faces use them.
+bulk_set_material_instances — Sets material instance names on multiple cubes at once. Useful for assigning different material instances to different faces across the project.
+clear_material_instances — Clears (removes) material instance names from cube faces. Useful for resetting material assignments.
+place_mesh — Places a mesh at the specified position. Texture and group are optional.
+extrude_mesh — Extrudes selected faces or edges of a mesh.
+subdivide_mesh — Subdivides selected faces of a mesh to create more geometry.
+create_sphere — Creates a sphere mesh at the specified position with the given parameters. The sphere is created as a mesh with vertices and faces using spherical coordinates.
+select_mesh_elements — Selects vertices, edges, or faces of a mesh for manipulation.
+move_mesh_vertices — Moves selected vertices of a mesh by the specified offset.
+delete_mesh_elements — Deletes selected vertices, edges, or faces from a mesh.
+merge_mesh_vertices — Merges vertices that are within a specified distance of each other.
+create_mesh_face — Creates a new face from selected vertices.
+create_cylinder — Creates one or more cylinder meshes with optional end caps.
+knife_tool — Uses the knife tool to cut custom edges into mesh faces.
+paint_fill_tool — Uses the fill/bucket tool to fill areas with color.
+draw_shape_tool — Draws geometric shapes on textures.
+gradient_tool — Applies gradients to textures.
+color_picker_tool — Picks colors from textures and sets them as the active color.
+copy_brush_tool — Uses the copy/clone brush to copy texture areas.
+eraser_tool — Erases parts of textures with customizable settings.
+paint_settings — Configures paint mode settings and preferences.
+paint_with_brush — Paints on textures using the brush tool with customizable settings.
+create_brush_preset — Creates a custom brush preset with specified settings.
+load_brush_preset — Loads and applies a brush preset by name.
+texture_selection — Creates, modifies, or manipulates texture selections for painting.
+texture_layer_management — Creates, manages, and manipulates texture layers.
+create_project — Creates a new project with the given name and project type.
+get_project_info — Returns read-only project orientation: format id and display name, project name/UUID, texture resolution (texture_width/height), element counts, and a summary of top-level groups. Prefer this over `risky_eval` for first-look inspection — no JavaScript execution required.
+create_texture — Creates a new texture with the given name and size.
+apply_texture — Applies the given texture to the element with the specified ID.
+add_texture_group — Adds a new texture group with the given name.
+list_textures — Returns a list of all textures in the Blockbench editor.
+get_texture — Returns the image data of the given texture or default texture.
+create_pbr_material — Creates a new PBR material (texture group with is_material=true) and optionally assigns textures to PBR channels. Use this for Minecraft Bedrock resource packs or any format supporting PBR.
+configure_material — Configures an existing PBR material's properties including channel assignments, uniform values, and subsurface scattering.
+list_materials — Lists all PBR materials (texture groups with is_material=true) and their assigned textures per channel.
+get_material_info — Gets detailed information about a PBR material including the compiled texture_set.json preview for Bedrock export.
+import_texture_set — Imports a Minecraft Bedrock texture_set.json file and creates a PBR material with the associated textures.
+assign_texture_channel — Assigns a texture to a specific PBR channel within a material.
+save_material_config — Saves the material's texture_set.json file to disk (Bedrock format). Requires the color texture to have a valid file path.
+activate_texture — Activates the given texture in the Blockbench texture panel so that subsequent paint operations (draw_shape_tool, paint_with_brush, gradient_tool, etc.) target it. Most paint tools already call this internally when a texture_id is provided, but you can invoke it explicitly to pin the active texture across multiple calls.
+trigger_action — Triggers an action in the Blockbench editor.
+risky_eval — Evaluates the given expression and logs it to the console. Do not pass `console` commands as they will not work.
+emulate_clicks — Emulates clicks on the given interface elements.
+fill_dialog — Fills the dialog with the given values.
+set_mesh_uv — Sets UV coordinates for mesh faces or vertices.
+auto_uv_mesh — Automatically generates UV mapping for selected mesh faces.
+rotate_mesh_uv — Rotates UV coordinates of selected mesh faces.
+
+Total: 94

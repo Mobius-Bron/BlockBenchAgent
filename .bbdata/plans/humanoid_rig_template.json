@@ -1,0 +1,37 @@
+{
+  "_note": "标准「方块风格人物」骨骼绑定模板。单位=Blockbench 像素(1/16格)。原则：每个活动部位一个 Group(即 Bone)，bone 的 origin(枢轴) 放在真实关节上；cube 挂在正确 bone 下。height=下半身高；上半身/头按比例。等待参考图确定比例后套用。",
+  "proportions": {
+    "ground": 0,
+    "leg_length": 12,
+    "body_bottom": 12,
+    "body_top": 24,
+    "head_bottom": 24,
+    "head_top": 32,
+    "shoulder_y": 22,
+    "hip_y": 12
+  },
+  "skeleton": [
+    { "name": "root", "parent": null, "pivot": [0, 0, 0], "desc": "根，一般不动" },
+    { "name": "right_leg", "parent": "root", "pivot": [-2, 12, 0], "desc": "枢轴=右髋关节；cube 沿 y0..12" },
+    { "name": "left_leg", "parent": "root", "pivot": [2, 12, 0], "desc": "枢轴=左髋关节" },
+    { "name": "body", "parent": "root", "pivot": [0, 12, 0], "desc": "枢轴=腰/髋，旋转即弯腰转体" },
+    { "name": "right_arm", "parent": "body", "pivot": [-5, 22, 0], "desc": "枢轴=右肩，可再分子臂" },
+    { "name": "left_arm", "parent": "body", "pivot": [5, 22, 0], "desc": "枢轴=左肩" },
+    { "name": "head", "parent": "body", "pivot": [0, 24, 0], "desc": "枢轴=颈椎根部" }
+  ],
+  "optional_finer_limbs": {
+    "_note": "拟真动作(走路摆臂、屈膝等)建议再拆：手臂=上臂+前臂，腿=大腿+小腿，肘/膝枢轴在各自关节",
+    "right_leg": ["right_thigh[pivot 髋]", "right_shin[pivot 膝 y≈6]"],
+    "left_leg": ["left_thigh[pivot 髋]", "left_shin[pivot 膝 y≈6]"],
+    "right_arm": ["right_upper[pivot 肩]", "right_forearm[pivot 肘 y≈16]"],
+    "left_arm": ["left_upper[pivot 肩]", "left_forearm[pivot 肘 y≈16]"]
+  },
+  "rules": [
+    "bone.origin 放在关节轴心(肩/髋/肘/膝/颈)，不在方块中心",
+    "姿势与动画只旋转 bone，不改 cube 本身坐标",
+    "持物：道具单独 Group 挂在手/腕 bone 下，随动作一起动",
+    "左右对称命名 right_*/left_*，便于镜像/动画",
+    "cube 的 from/to 用世界坐标；父 bone 旋转绕 pivot 生效",
+    "方块风模型用 Outliner Group 做骨骼(MC 实体格式同款)；mesh 蒙皮才用 Armature+顶点权重"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "set_camera_angle",
+  "title": "Set Camera Angle",
+  "description": "Sets the camera angle to the specified value.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "position": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 3,
+        "maxItems": 3,
+        "description": "Camera position."
+      },
+      "target": {
+        "type": "array",
+        "items": {
+          "$ref": "#/properties/position/items"
+        },
+        "minItems": 3,
+        "maxItems": 3,
+        "description": "Camera target position."
+      },
+      "rotation": {
+        "$ref": "#/properties/target",
+        "description": "Camera rotation."
+      },
+      "projection": {
+        "type": "string",
+        "enum": [
+          "unset",
+          "orthographic",
+          "perspective"
+        ],
+        "description": "Camera projection type."
+      }
+    },
+    "required": [
+      "position",
+      "projection"
+    ],
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  "execution": {
+    "taskSupport": "forbidden"
+  }
+}

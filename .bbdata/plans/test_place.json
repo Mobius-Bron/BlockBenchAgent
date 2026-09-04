@@ -1,0 +1,16 @@
+{
+  "calls": [
+    {
+      "tool": "place_cube",
+      "args": {
+        "elements": [
+          { "name": "body_main", "from": [-7, 22, -15], "to": [7, 36, 10] },
+          { "name": "chest_front", "from": [-6, 30, -1], "to": [6, 38, 11] }
+        ],
+        "texture": "fur",
+        "group": "HorseBody",
+        "faces": true
+      }
+    }
+  ]
+}
